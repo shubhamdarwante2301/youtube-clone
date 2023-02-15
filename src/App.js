@@ -2,9 +2,13 @@ import {useState, useEffect} from 'react';
 import {Routes, Route} from 'react-router-dom';
 import { Navbar, HomePage, Video, Sidebar } from './components';
 
+import { fetchData } from './utils/fetchData';
+
 function App() {
   const [toggal, setToggal] = useState(true);
   const [width, setWidth] = useState(window.innerWidth);
+
+  fetchData();
 
   useEffect(() => {
     const handleResize = () => setWidth(window.innerWidth);

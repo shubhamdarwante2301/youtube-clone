@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { FaYoutube, FaSistrix, FaBars } from "react-icons/fa";
 
 const Navbar = ({ setToggal, toggal, menuIcon }) => {
-  console.log("menuiocn= ", menuIcon);
+  // console.log("menuiocn= ", menuIcon);
   return (
     <div className="flex justify-between items-center sticky top-0 left-0 bg-[#0f0f0f] mb-3 py-3">
       <div className="flex items-center">
