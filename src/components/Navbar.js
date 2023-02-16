@@ -1,9 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { FaYoutube, FaSistrix, FaBars } from "react-icons/fa";
+import { fetchData } from "../utils/fetchData";
 
-const Navbar = ({ setToggal, toggal, menuIcon }) => {
+const Navbar = ({ setToggal, toggal }) => {
   // console.log("menuiocn= ", menuIcon);
+  useEffect(() => {
+    fetchData();
+  // fetchData("search/?q=New")
+  // .then((data) => {
+  //   console.log(data);
+  // })
+    // console.log("videos",);
+  },[])
   return (
     <div className="flex justify-between items-center sticky top-0 left-0 bg-[#0f0f0f] mb-3 py-3">
       <div className="flex items-center">

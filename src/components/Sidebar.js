@@ -1,5 +1,5 @@
 import React from "react";
-import { CATEGORIES } from '../utils/constants/categories';
+import { CATEGORIES } from '../constants/categories';
 
 const temp = "Home";
 const Sidebar = ({ toggal }) => {
