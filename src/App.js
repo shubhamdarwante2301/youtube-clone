@@ -29,7 +29,7 @@ function App() {
         <Sidebar />
         <Routes>
           <Route path="/" element={<HomePage toggal={toggal}/>} />
-          <Route path="/video" element={<Video />} />
+          <Route path="/video/:id" element={<Video />} />
         </Routes>
       </div>
     </AppContext>
