@@ -1,7 +1,7 @@
 import {useState, useEffect} from 'react';
 import {Routes, Route} from 'react-router-dom';
 import { Navbar, HomePage, Video, Sidebar } from './components';
-// import { AppContext } from './context/contextApi';
+import { AppContext } from './context/contextApi';
 
 function App() {
   const [toggal, setToggal] = useState(true);
@@ -23,7 +23,7 @@ function App() {
   // };
   
   return (
-    // <AppContext>
+    <AppContext>
       <div className="mx-3 relative">
         <Navbar setToggal={setToggal} toggal={toggal}/>
         <Sidebar />
@@ -32,7 +32,7 @@ function App() {
           <Route path="/video" element={<Video />} />
         </Routes>
       </div>
-    // </AppContext>
+    </AppContext>
   );
 }
 

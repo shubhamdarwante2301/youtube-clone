@@ -10,15 +10,16 @@ export const AppContext = (props) => {
     const [mobileMenu, setMobileMenu] = useState(false);
 
     useEffect(() => {
-        fetchSelectedCategoryData(selectedCategory);
+        fetchSelectedCategoryData("New");
+        // fetchSelectedCategoryData(selectedCategory);
     }, [selectedCategory]);
 
     const fetchSelectedCategoryData = (query) => {
         setLoading(true);
-        fetchData(`search/?q=${query}`)
-        .then(({ contents }) => {
-            console.log(contents);
-            setSearchResults(contents);
+        fetchData(`?q=${query}`)
+        .then((response) => {
+            console.log(response.data.contents);
+            setSearchResults(response.data.contents);
             setLoading(false);
         });
     };
