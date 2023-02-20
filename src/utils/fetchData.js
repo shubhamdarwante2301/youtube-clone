@@ -4,7 +4,7 @@ const BASE_URL = 'https://youtube138.p.rapidapi.com/search';
 
 const options = {
   params: {
-    q: 'despacito', hl: 'en', gl: 'US'
+    hl: 'en', gl: 'US'
   },
   headers: {
     'X-RapidAPI-Key': process.env.REACT_APP_API_KEY,
