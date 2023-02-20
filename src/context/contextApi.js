@@ -10,13 +10,13 @@ export const AppContext = (props) => {
     const [mobileMenu, setMobileMenu] = useState(false);
 
     useEffect(() => {
-        fetchSelectedCategoryData("New");
-        // fetchSelectedCategoryData(selectedCategory);
+        // fetchSelectedCategoryData("Trending");
+        fetchSelectedCategoryData(selectedCategory);
     }, [selectedCategory]);
 
     const fetchSelectedCategoryData = (query) => {
         setLoading(true);
-        fetchData(`?q=${query}`)
+        fetchData(`search/?q=${query}`)
         .then((response) => {
             console.log(response.data.contents);
             setSearchResults(response.data.contents);

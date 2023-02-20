@@ -13,6 +13,7 @@ const Home = () => {
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 overflow-y-auto">
       {
        !loading && searchResults.map((video, index) => {
+        if(video.type !== "video") return false;
         return (
             <Link to="video" key={index}>
               <VideoCard video={video.video}/>
