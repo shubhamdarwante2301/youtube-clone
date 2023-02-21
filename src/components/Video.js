@@ -4,18 +4,16 @@ import { fetchData } from "../utils/fetchData";
 import RecomendedVideo from "./RecomendedVideo";
 import VideoDetails from "./VideoDetails";
 
-const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 11, 12, 13, 14, 15];
-
 const Video = () => {
   const[VideoInfo, setVideoInfo] = useState('');
   const id = useParams();
-  console.log("id: ",id.id);
+  // console.log("id: ",id.id);
 
   const fetchVideo = (id) => {
     fetchData(`video/details/?${id}`)
     .then((response) => {
       setVideoInfo(response.data);
-      console.log("response: ",response.data);
+      // console.log("response: ",response.data);
     })
     .catch((error) => {
       console.error(error);
@@ -36,7 +34,6 @@ const Video = () => {
         <iframe
           src={`https://www.youtube.com/embed/${VideoInfo?.videoId}`}
           frameBorder="0"
-          // allow="autoplay; encrypted-media"
           allowFullScreen
           title="video"
           width="100%"
@@ -47,9 +44,10 @@ const Video = () => {
         </div>
       </div>
       <div className="col-span-3 xl:col-span-1">
-        {arr.map((data) => {
-          return <RecomendedVideo key={data}/>;
-        })}
+        {/* {arr.map((data) => {
+          return <RecomendedVideo key={data} videoId={VideoInfo?.videoId}/>;
+        })} */}
+        <RecomendedVideo videoId={VideoInfo?.videoId} />
       </div>
     </div>
   );

@@ -1,20 +1,53 @@
-import React from 'react'
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { fetchData } from "../utils/fetchData";
 
-const image =
-  "https://i.ytimg.com/vi/jvoOgxK4EvI/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLA3-6lAZ85ANpKpMSz1aU_RY1-rPA";
-const RecomendedVideo = () => {
-    return (
-        <div className="flex flex-col sm:flex-row xl:grid xl:grid-cols-2 mb-4">
-            <div className="mr-2 max-w-[300px]">
-                <img src={image} alt="" className="rounded-xl"/>
-            </div>
-            <div>
-                <p>Relaxing music that heals stress, anxiety and ... </p>
-                <p className="text-gray-400">Tranquil Paradise</p>
-                <p className="text-gray-400">92.31k views.8 days ago</p>
-            </div>
-        </div>
-    )
-}
+const RecomendedVideo = ({ videoId }) => {
+  const [video, setVideo] = useState('');
 
-export default RecomendedVideo
+  const fetchVideo = (id) => {
+    fetchData(`video/related-contents/?id=${id}`)
+      .then((response) => {
+        setVideo(response?.data?.contents);
+        // console.log("response: ", response?.data?.contents);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+  useEffect(()=>{
+    fetchVideo(videoId);
+  },[videoId])
+
+  if(video === '') {
+    return;
+  }
+  return (
+    <>
+      {video.map((video, index) => {
+        if(video.type !== 'video') return false;
+        const data = video.video;
+        // console.log("data: ", data);
+        return (
+          <Link to={`/video/id=${data.videoId}`} key={data.videoId}>
+            <div
+              className="flex flex-col sm:flex-row xl:grid xl:grid-cols-2 mb-4"
+              key={index}
+            >
+              <div className="mr-2 max-w-[300px]">
+                <img src={data?.thumbnails?.[1]?.url} alt="" className="rounded-xl" />
+              </div>
+              <div>
+                <p>{data.title}</p>
+                <p className="text-gray-400">{data?.author?.title}</p>
+                <p className="text-gray-400">{data?.stats?.views} views.{data?.publishedTimeText}</p>
+              </div>
+            </div>
+          </Link>
+        );
+      })}
+    </>
+  );
+};
+
+export default RecomendedVideo;

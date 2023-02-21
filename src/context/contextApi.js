@@ -18,7 +18,7 @@ export const AppContext = (props) => {
         setLoading(true);
         fetchData(`search/?q=${query}`)
         .then((response) => {
-            console.log(response.data.contents);
+            // console.log(response.data.contents);
             setSearchResults(response.data.contents);
             setLoading(false);
         });

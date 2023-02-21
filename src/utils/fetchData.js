@@ -17,7 +17,7 @@ const options = {
 export const fetchData = (url) => {
   try {
     const response = axios.get(`${BASE_URL}/${url}`, options);
-    console.log(response);
+    // console.log(response);
     return response;
   } catch(error) {
     console.error("Error", error);
